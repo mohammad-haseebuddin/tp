@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Special Surprise For You! 🎁</title>
+    <style>
+        /* --- General Styling & Background Image --- */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            /* Background Image representing gifts/celebration */
+            background: url('https://images.unsplash.com/photo-1513201099705-a9746e1e201f?q=80&w=1000&auto=format&fit=crop') no-repeat center center fixed;
+            background-size: cover;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            text-align: center;
+            position: relative;
+        }
+
+        /* Dark Overlay on Background image to make text readable */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0, 0, 0, 0.5); /* Semi-transparent dark layer */
+            transition: background 0.8s ease; /* Smooth transition for prank mode */
+            z-index: 1;
+        }
+
+        /* The main white box */
+        .container {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 2.5rem;
+            border-radius: 25px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+            width: 550px; 
+            max-width: 90%;
+            position: relative;
+            backdrop-filter: blur(8px);
+            z-index: 2;
+            animation: popIn 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            transition: border 0.5s ease, box-shadow 0.5s ease;
+        }
+
+        @keyframes popIn {
+            0% { opacity: 0; transform: scale(0.5); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        h1 {
+            color: #ff6b6b;
+            margin-bottom: 25px;
+            font-size: 2rem;
+        }
+
+        p {
+            font-size: 1.3rem;
+            color: #444;
+            margin-bottom: 35px;
+            line-height: 1.6;
+        }
+
+        /* --- Buttons --- */
+        .btn {
+            background: linear-gradient(to right, #ff416c, #ff4b2b);
+            border: none;
+            padding: 18px 40px;
+            color: white;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(255, 65, 108, 0.5);
+            transition: all 0.3s ease;
+            outline: none;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 10px 25px rgba(255, 65, 108, 0.7);
+        }
+
+        .btn:active {
+            transform: scale(0.95);
+        }
+
+        /* --- Animations --- */
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+
+        .gift-emoji {
+            font-size: 6rem;
+            display: block;
+            margin: 0 auto 25px;
+            animation: float 2.5s ease-in-out infinite;
+            cursor: pointer;
+            filter: drop-shadow(0 10px 10px rgba(0,0,0,0.2));
+        }
+
+        /* --- Hidden Sections Logic --- */
+        .step {
+            display: none;
+        }
+
+        .step.active {
+            display: block;
+            animation: slideUpFade 0.5s ease forwards;
+        }
+
+        @keyframes slideUpFade {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- Loading Bar --- */
+        .loader-container {
+            width: 100%;
+            background-color: #eee;
+            border-radius: 15px;
+            margin: 30px 0;
+            height: 25px;
+            overflow: hidden;
+            box-shadow: inset 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .loader-bar {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(to right, #a18cd1, #fbc2eb, #ff9a9e);
+            background-size: 200% 200%;
+            animation: gradientMove 2s ease infinite;
+            transition: width 0.1s;
+            border-radius: 15px;
+        }
+
+        @keyframes gradientMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* --- THE PRANK REVEAL STYLE --- */
+        body.prank-mode::before {
+            background: rgba(20, 20, 20, 0.95); 
+        }
+
+        .prank-mode .container {
+            background: #fff;
+            border: 8px solid #e74c3c;
+            box-shadow: 0 0 50px rgba(231, 76, 60, 0.5);
+        }
+
+        .prank-text {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: #e74c3c;
+            line-height: 1.4;
+            text-transform: uppercase;
+            animation: shake 0.5s infinite;
+            margin-bottom: 20px;
+        }
+
+        .sub-text {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #333;
+        }
+
+        @keyframes shake {
+            0% { transform: translate(1px, 1px) rotate(0deg); }
+            10% { transform: translate(-1px, -2px) rotate(-1deg); }
+            20% { transform: translate(-3px, 0px) rotate(1deg); }
+            30% { transform: translate(3px, 2px) rotate(0deg); }
+            40% { transform: translate(1px, -1px) rotate(1deg); }
+            50% { transform: translate(-1px, 2px) rotate(-1deg); }
+            60% { transform: translate(-3px, 1px) rotate(0deg); }
+            70% { transform: translate(3px, 1px) rotate(-1deg); }
+            80% { transform: translate(-1px, -1px) rotate(1deg); }
+            90% { transform: translate(1px, 2px) rotate(0deg); }
+            100% { transform: translate(1px, -2px) rotate(-1deg); }
+        }
+
+        /* --- Mobile Responsiveness --- */
+        @media (max-width: 480px) {
+            .container {
+                padding: 1.5rem;
+                width: 95%;
+            }
+            h1 { font-size: 1.6rem; }
+            p { font-size: 1.1rem; margin-bottom: 25px; }
+            .gift-emoji { font-size: 5rem; }
+            .btn { padding: 12px 30px; font-size: 1rem; }
+            .prank-text { font-size: 1.8rem; }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <div id="step-1" class="step active">
+            <div class="gift-emoji" onclick="nextStep(2)">🎁</div>
+            <h1>Hey Bhondu</h1>
+            <p>I have a special surprise gift for you.</p>
+            <button class="btn" onclick="nextStep(2)">Open Gift</button>
+        </div>
+
+        <div id="step-2" class="step">
+            <h1>Wait a second...</h1>
+            <p>Sach me dekhna chahti hai?</p>
+            <button class="btn" onclick="nextStep(3)">Yes, I am!</button>
+        </div>
+
+        <div id="step-3" class="step">
+            <h1>Calculating Surprise...</h1>
+            <div class="loader-container">
+                <div class="loader-bar" id="progressBar"></div>
+            </div>
+            <p id="loadingText">Connecting to server...</p>
+        </div>
+
+        <div id="step-4" class="step">
+            <div class="gift-emoji" style="font-size: 7rem;">🧠</div> 
+            <h1 style="color: #fca311;">Yeh le tere liye BEST gift!</h1>
+            <p>Sabse zyada zarurat isi ki hai tujhe. 😉</p>
+            <button class="btn" onclick="nextStep(5)">Wait wait, aur bhi hai Click here ! 😂</button>
+        </div>
+
+        <div id="step-5" class="step">
+            <h1 style="color: #6c5ce7;">Almost There!</h1>
+            <p>Promise, kisi ko nhi batayegi?</p>
+            <button class="btn" onclick="revealPrank()">I Promise!</button>
+        </div>
+
+        <div id="step-6" class="step">
+            <div style="font-size: 5rem; margin-bottom: 20px;">📚🧐</div>
+            <div class="prank-text">BETA PADHAI KARLE!</div>
+            <p class="sub-text">Ye sab karne se ghar nahi chalta.</p>
+            <p style="font-size: 1rem; color: #888; margin-top: 30px;">(Go study now! 😂)</p>
+        </div>
+
+    </div>
+
+    <script>
+        // Function to switch steps
+        function nextStep(stepNumber) {
+            document.querySelectorAll('.step').forEach(el => el.classList.remove('active'));
+            
+            const nextDiv = document.getElementById('step-' + stepNumber);
+            if(nextDiv) nextDiv.classList.add('active');
+
+            if (stepNumber === 3) {
+                runFakeLoader();
+            }
+        }
+
+        // Fake Loading Animation
+        function runFakeLoader() {
+            const bar = document.getElementById('progressBar');
+            const text = document.getElementById('loadingText');
+            let width = 0;
+            const messages = ["Connecting...", "Scanning Face...", "Verifying Cuteness...", "Finding Brain...", "Almost Found..."];
+            
+            const interval = setInterval(() => {
+                if (width >= 100) {
+                    clearInterval(interval);
+                    // Go to Step 4 (The Brain Gift) automatically after loading
+                    setTimeout(() => nextStep(4), 300); 
+                } else {
+                    width += 1.5; 
+                    bar.style.width = width + '%';
+                    
+                    if(Math.floor(width) % 20 === 0 && width < 90) {
+                        text.innerText = messages[Math.floor(width / 20)];
+                    }
+                }
+            }, 30);
+        }
+
+        // The Prank Reveal Function
+        function revealPrank() {
+            document.body.classList.add('prank-mode');
+            // Hide the promise step (now step 5)
+            document.getElementById('step-5').classList.remove('active');
+            // Show the prank step (now step 6)
+            document.getElementById('step-6').classList.add('active');
+        }
+    </script>
+</body>
+</html>
